@@ -78,9 +78,10 @@ public class PlaceBuilding : MonoBehaviour, IDragHandler, IDropHandler, IBeginDr
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (_dragged == PlaceBuildingData.ErrorPrefab)
+        if (_dragged.CompareTag("ErrorCross"))
         {
-            PlaceBuildingData.ErrorPrefab.SetActive(false);
+            //PlaceBuildingData.ErrorPrefab.SetActive(false);
+            Destroy(_dragged);
         }
         _dragged = null;
         _lineDragged = null;
@@ -95,8 +96,9 @@ public class PlaceBuilding : MonoBehaviour, IDragHandler, IDropHandler, IBeginDr
         }
         else
         {
-            _dragged = PlaceBuildingData.ErrorPrefab;
-            _dragged.SetActive(true);
+            Debug.Log("Setting error prefab");
+            _dragged = Instantiate(PlaceBuildingData.ErrorPrefab);
+            //_dragged.SetActive(true);
             _lineDragged = null;
         }
     }
