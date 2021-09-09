@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlaceBuilding : MonoBehaviour, IDragHandler, IDropHandler, IBeginDragHandler
+public class PlaceBuilding : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public GameObject Prefab;
 
@@ -78,13 +78,7 @@ public class PlaceBuilding : MonoBehaviour, IDragHandler, IDropHandler, IBeginDr
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (_dragged.CompareTag("ErrorCross"))
-        {
-            //PlaceBuildingData.ErrorPrefab.SetActive(false);
-            Destroy(_dragged);
-        }
-        _dragged = null;
-        _lineDragged = null;
+        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -101,5 +95,16 @@ public class PlaceBuilding : MonoBehaviour, IDragHandler, IDropHandler, IBeginDr
             //_dragged.SetActive(true);
             _lineDragged = null;
         }
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (_dragged.CompareTag("ErrorCross"))
+        {
+            //PlaceBuildingData.ErrorPrefab.SetActive(false);
+            Destroy(_dragged);
+        }
+        _dragged = null;
+        _lineDragged = null;
     }
 }
