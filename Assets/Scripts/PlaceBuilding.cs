@@ -38,7 +38,7 @@ public class PlaceBuilding : MonoBehaviour, IDragHandler, IDropHandler, IBeginDr
 
     public int GetBuildingLayer()
     {
-        return LayerMask.GetMask(new string[] { "Buildings" });
+        return LayerMask.GetMask(new string[] { "Buildings", "Resources" });
     }
 
     public void OnDrag(PointerEventData eventData)
