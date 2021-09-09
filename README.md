@@ -1,4 +1,4 @@
-# shapes-of-light-and-magic
+# Shapes of Light and Magic
 Shapes of Light and Magic: An open source tower defense game in the spirit of yorg.io.
 
 # Demo on YouTube
