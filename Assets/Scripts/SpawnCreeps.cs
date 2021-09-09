@@ -25,8 +25,13 @@ namespace Assets.Scripts
         // Update is called once per frame
         void FixedUpdate()
         {
-            _elapsed += Time.fixedDeltaTime;
+            if (!Simulator.Nighttime)
+            {
+                CreepCount = 0;
+                return;
+            }
 
+            _elapsed += Time.fixedDeltaTime;
             if (_elapsed >= Interval)
             {
                 _elapsed -= Time.fixedDeltaTime;

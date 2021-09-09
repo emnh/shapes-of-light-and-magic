@@ -10,10 +10,17 @@ namespace Assets.Scripts
 
         public TextMeshProUGUI FirestoneCount;
 
+        public TextMeshProUGUI WaveCountdown;
+
+        public float UntilNextWave = 30.0f;
+
         public int MapSizeX = 100;
         public int MapSizeY = 50;
 
+        public bool Nighttime = false;
+
         private int _firestoneCount = 250;
+        private float _lastWaveEvent = 0.0f;
 
         public List<MovingCollected> MovingToBase = new List<MovingCollected>();
 
@@ -64,6 +71,14 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
+            var title = Nighttime ? "Until morning: " : "Next wave: ";
+            WaveCountdown.text = title + ((int) (UntilNextWave - (Time.time - _lastWaveEvent))).ToString();
+            if (Time.time - _lastWaveEvent >= UntilNextWave)
+            {
+                Nighttime = !Nighttime;
+                _lastWaveEvent = Time.time;
+            }
+
             var newList = new List<MovingCollected>();
             foreach (var obj in MovingToBase)
             {
