@@ -58,7 +58,7 @@ public class PlaceBuilding : MonoBehaviour, IDragHandler, IDropHandler, IBeginDr
             _dragged.transform.position = newPos;
         }
 
-        if (_lineDragged != null)
+        if (_dragged != null && _lineDragged != null)
         {
             var scale = _lineDragged.transform.localScale;
 
@@ -97,6 +97,7 @@ public class PlaceBuilding : MonoBehaviour, IDragHandler, IDropHandler, IBeginDr
         {
             _dragged = PlaceBuildingData.ErrorPrefab;
             _dragged.SetActive(true);
+            _lineDragged = null;
         }
     }
 }
