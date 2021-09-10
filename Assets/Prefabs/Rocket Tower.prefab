@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShotPrefab: {fileID: 7459651832956906504, guid: 34704361bb46dc246860fdecc4968d72, type: 3}
   ShotSpeed: 1
-  ShootDistance: 16
+  ShootDistance: 20
   ShootInterval: 0.1
 --- !u!114 &8187247594636822349
 MonoBehaviour:
