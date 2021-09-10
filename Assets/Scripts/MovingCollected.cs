@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    // TODO: Make it into a component?
     public class MovingCollected
     {
         public GameObject Moving;
@@ -18,6 +19,10 @@ namespace Assets.Scripts
 
         public bool MoveAlong(float delta)
         {
+            if (Moving == null)
+            {
+                return false;
+            }
             var from = new Vector2(Source.transform.position.x, Source.transform.position.y);
             var to = new Vector2(Destination.transform.position.x, Destination.transform.position.y);
             var vx = to.x - from.x;
