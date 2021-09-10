@@ -1332,13 +1332,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc07ff39a7ba527418f591c91f2810b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainLight: {fileID: 800305035}
+  MainVolume: {fileID: 1773028913}
+  DayNightCycleLightChangeTime: 2
   MainBase: {fileID: 383068719}
   FirestoneCount: {fileID: 2056537050}
   WaveCountdown: {fileID: 411968496}
   UntilNextWave: 30
   MapSizeX: 100
   MapSizeY: 50
-  Nighttime: 0
+  NightTime: 0
 --- !u!4 &939539097
 Transform:
   m_ObjectHideFlags: 0

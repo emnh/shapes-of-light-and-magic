@@ -1,11 +1,20 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 namespace Assets.Scripts
 {
     public class Simulator : MonoBehaviour
     {
+        public Light2D MainLight;
+
+        public Volume MainVolume;
+
+        public float DayNightCycleLightChangeTime = 2.0f;
+
         public GameObject MainBase;
 
         public TextMeshProUGUI FirestoneCount;
@@ -17,10 +26,11 @@ namespace Assets.Scripts
         public int MapSizeX = 100;
         public int MapSizeY = 50;
 
-        public bool Nighttime = false;
+        public bool NightTime = false;
 
         private int _firestoneCount = 250;
         private float _lastWaveEvent = 0.0f;
+
 
         public List<MovingCollected> MovingToBase = new List<MovingCollected>();
 
@@ -71,12 +81,27 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            var title = Nighttime ? "Until morning: " : "Next wave: ";
+            var title = NightTime ? "Until morning: " : "Next wave: ";
             WaveCountdown.text = title + ((int) (UntilNextWave - (Time.time - _lastWaveEvent))).ToString();
             if (Time.time - _lastWaveEvent >= UntilNextWave)
             {
-                Nighttime = !Nighttime;
+                NightTime = !NightTime;
                 _lastWaveEvent = Time.time;
+            }
+
+            if (Time.time - _lastWaveEvent <= DayNightCycleLightChangeTime & _lastWaveEvent > 0.0f)
+            {
+                var transitionTime = 1.0f - (DayNightCycleLightChangeTime - (Time.time - _lastWaveEvent)) / DayNightCycleLightChangeTime;
+                //Debug.Log("Transition time: " + transitionTime);
+                var dayIntensity = 1.0f;
+                var nightIntensity = 0.0f;
+                var start = NightTime ? dayIntensity : nightIntensity;
+                var end = NightTime ? nightIntensity : dayIntensity;
+                //MainLight.intensity = Mathf.Lerp(start, end, transitionTime);
+                if (MainVolume.profile.TryGet<ColorAdjustments>(out var colorAdjustments))
+                {
+                    colorAdjustments.postExposure.value = Mathf.Lerp(start, end, transitionTime);
+                }
             }
 
             var newList = new List<MovingCollected>();

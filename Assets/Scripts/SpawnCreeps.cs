@@ -25,7 +25,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (!Simulator.Nighttime)
+            if (!Simulator.NightTime)
             {
                 CreepCount = 0;
                 return;
