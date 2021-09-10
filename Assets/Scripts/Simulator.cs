@@ -49,8 +49,8 @@ namespace Assets.Scripts
             Destroy(newMoving.Moving.gameObject.GetComponent<BoxCollider2D>());
             Destroy(newMoving.Moving.gameObject.GetComponent<Rigidbody2D>());
             newMoving.Moving.transform.position = newMoving.Source.transform.position;
-            newMoving.Moving.transform.localScale = new Vector3(0.25f, 0.5f, 1.0f);
-            newMoving.Moving.transform.rotation = Quaternion.identity;
+            newMoving.Moving.transform.localScale = new Vector3(0.35f, 0.35f, 1.0f);
+            newMoving.Moving.transform.rotation = Quaternion.Euler(Random.Range(0.0f, 360.0f) * Vector3.forward);
             MovingToBase.Add(newMoving);
         }
 

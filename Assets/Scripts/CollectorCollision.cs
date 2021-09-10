@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class CollectorCollision : MonoBehaviour
+    public class CollectorCollision : BuildingBehaviour
     {
         private Simulator Simulator;
 
@@ -25,9 +25,11 @@ namespace Assets.Scripts
 
         void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Trigger: " + collision.gameObject.name);
+            Debug.Log("Trigger Name: " + collision.name);
+            Debug.Log("Trigger GO Name: " + collision.gameObject.name);
 
-            if (collision.gameObject.CompareTag("Diamond"))
+            if (Simulator != null && this.gameObject != null && collision.gameObject != null && 
+                (collision.gameObject.CompareTag("FireStone") || collision.gameObject.CompareTag("IceRock") || collision.gameObject.CompareTag("PoisonCloud")))
             {
                 Debug.Log("Collecting");
                 Simulator.Collect(this.gameObject, collision.gameObject);
