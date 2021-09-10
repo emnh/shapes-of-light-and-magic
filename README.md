@@ -8,7 +8,7 @@ Status: Primitive functionality now implemented since initial 2 days of developm
 [![Demo](/Assets/Screenshots/Screenshot01.png?raw=true)](https://www.youtube.com/watch?v=gBNfbFVoe1Y)
 
 # Live Demo
-[![Demo](/Assets/Screenshots/Screenshot01.png?raw=true)](https://emnh.no/publish/ShapesOfLightAndMagic/)
+[![Demo](/Assets/Screenshots/Screenshot02.png?raw=true)](https://emnh.no/publish/ShapesOfLightAndMagic/)
 
 # License
 GNU GPLv3
