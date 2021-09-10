@@ -1338,7 +1338,7 @@ MonoBehaviour:
   MainBase: {fileID: 383068719}
   FirestoneCount: {fileID: 2056537050}
   WaveCountdown: {fileID: 411968496}
-  UntilNextWave: 30
+  UntilNextWave: 3
   MapSizeX: 100
   MapSizeY: 50
   NightTime: 0

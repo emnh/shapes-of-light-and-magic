@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: -7191124121097687923}
   - component: {fileID: 646942879720488176}
   - component: {fileID: -1354053686455023212}
+  - component: {fileID: 4159404775313475977}
   m_Layer: 3
   m_Name: Collector
   m_TagString: Untagged
@@ -229,3 +230,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4159404775313475977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65098950656355391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912e31ffc4078a143aa04fea913e8535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Explosion: {fileID: 1380329355102272894, guid: e613c60a9d5950e4b8cd21297417ec66, type: 3}
+  Health: 100
+  MaxHealth: 100
