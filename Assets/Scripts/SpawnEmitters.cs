@@ -7,7 +7,8 @@ namespace Assets.Scripts
     public class SpawnEmitters : MonoBehaviour
     {
         public Simulator Simulator;
-        public GameObject Emitter;
+        public GameObject FireStoneEmitter;
+        public GameObject IceRockEmitter;
         public int Count = 100;
         public float MinDistanceToOther = 8.0f;
         public List<Vector3> AlreadyPlaced = new List<Vector3>();
@@ -16,13 +17,14 @@ namespace Assets.Scripts
         void Start()
         {
             // Place one near main base so we can get started
-            var obj2 = Instantiate(Emitter, transform);
+            var obj2 = Instantiate(FireStoneEmitter, transform);
             obj2.transform.position = Simulator.Snap(new Vector3(3.0f, 3.0f, 0.0f));
             AlreadyPlaced.Add(obj2.transform.position);
 
             for (var i = 1; i < Count; i++)
             {
-                var obj = Instantiate(Emitter, transform);
+                var emitter = i % 3 <= 1 ? FireStoneEmitter : IceRockEmitter;
+                var obj = Instantiate(emitter, transform);
                 obj.transform.position = Vector3.zero;
                 var k = 0;
                 var tries = 100;

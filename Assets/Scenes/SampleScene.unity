@@ -1386,7 +1386,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Simulator: {fileID: 939539096}
-  Emitter: {fileID: 2060172013137823203, guid: b90962cb17bdaa447bd3d77dcc8405e4, type: 3}
+  FireStoneEmitter: {fileID: 2060172013137823203, guid: b90962cb17bdaa447bd3d77dcc8405e4, type: 3}
+  IceRockEmitter: {fileID: 2060172013137823203, guid: 111abc49ef2998b4abc2edbc8bd25c6d, type: 3}
   Count: 100
   MinDistanceToOther: 8
   AlreadyPlaced: []
