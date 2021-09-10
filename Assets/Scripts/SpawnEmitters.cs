@@ -9,6 +9,7 @@ namespace Assets.Scripts
         public Simulator Simulator;
         public GameObject FireStoneEmitter;
         public GameObject IceRockEmitter;
+        public GameObject PoisonCloudEmitter;
         public int Count = 100;
         public float MinDistanceToOther = 8.0f;
         public List<Vector3> AlreadyPlaced = new List<Vector3>();
@@ -21,9 +22,14 @@ namespace Assets.Scripts
             obj2.transform.position = Simulator.Snap(new Vector3(3.0f, 3.0f, 0.0f));
             AlreadyPlaced.Add(obj2.transform.position);
 
+            var emitters = new List<GameObject>()
+            {
+                FireStoneEmitter, IceRockEmitter, PoisonCloudEmitter
+            };
+
             for (var i = 1; i < Count; i++)
             {
-                var emitter = i % 3 <= 1 ? FireStoneEmitter : IceRockEmitter;
+                var emitter = emitters[i % 3];
                 var obj = Instantiate(emitter, transform);
                 obj.transform.position = Vector3.zero;
                 var k = 0;
