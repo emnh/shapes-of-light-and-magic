@@ -54,6 +54,15 @@ namespace Assets.Scripts
             MovingToBase.Add(newMoving);
         }
 
+        public void StartWave()
+        {
+            if (NightTime == false)
+            {
+                _lastWaveEvent = Time.time;
+                NightTime = true;
+            }
+        }
+
         public static Vector3 Snap(Vector3 v)
         {
             v.x = Mathf.Floor(v.x) + 0.5f;
