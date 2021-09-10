@@ -33,14 +33,26 @@ namespace Assets.Scripts
             {
                 Health -= 10;
                 Debug.Log("Health");
+
+                // Reparent particle systems so trail and smoke gets time to dissipate
+                foreach (var psys in collider.gameObject.GetComponentsInChildren<ParticleSystem>())
+                {
+                    psys.gameObject.transform.SetParent(this.transform.parent.transform, true);
+                    Destroy(psys.gameObject, 2.0f);
+                }
                 Destroy(collider.gameObject);
+
+
                 if (Health <= 0.0)
                 {
                     var exp = Instantiate(Explosion, transform.parent);
                     exp.transform.position = transform.position;
                     exp.transform.localScale = transform.localScale;
+
                     Destroy(exp, 2.0f);
                     Destroy(this.gameObject);
+
+                    
                 }
             }
         }
