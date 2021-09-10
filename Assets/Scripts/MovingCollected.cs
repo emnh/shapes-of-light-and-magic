@@ -19,7 +19,7 @@ namespace Assets.Scripts
 
         public bool MoveAlong(float delta)
         {
-            if (Moving == null)
+            if (Moving == null || Source == null || Destination == null)
             {
                 return false;
             }

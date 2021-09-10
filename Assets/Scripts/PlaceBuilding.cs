@@ -81,12 +81,27 @@ public class PlaceBuilding : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
         
     }
 
+    public void SetComponentsEnabled(bool enabled)
+    {
+        var component = _dragged.GetComponent<CollectorCollision>();
+        if (component != null)
+        {
+            component.enabled = enabled;
+        }
+        var component2 = _dragged.GetComponent<TowerBehaviour>();
+        if (component2 != null)
+        {
+            component2.enabled = enabled;
+        }
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (PlaceBuildingData.Simulator.TryToBuy(_cost))
         {
             _dragged = Instantiate(Prefab);
-            _lineDragged = Instantiate(PlaceBuildingData.Line);
+            SetComponentsEnabled(false);
+            _lineDragged = Instantiate(PlaceBuildingData.Line, _dragged.transform);
         }
         else
         {
@@ -104,6 +119,12 @@ public class PlaceBuilding : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
             //PlaceBuildingData.ErrorPrefab.SetActive(false);
             Destroy(_dragged);
         }
+
+        if (_dragged != null)
+        {
+            SetComponentsEnabled(true);
+        }
+
         _dragged = null;
         _lineDragged = null;
     }

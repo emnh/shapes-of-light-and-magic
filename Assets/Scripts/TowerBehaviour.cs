@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class TowerBehaviour : MonoBehaviour
+    public class TowerBehaviour : BuildingBehaviour
     {
         public GameObject ShotPrefab;
 
