@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -24,12 +25,25 @@ namespace Assets.Scripts
         {
             if (other.CompareTag("Collector"))
             {
+                var fireStone = gameObject.CompareTag("FireStone");
+                var iceRock = gameObject.CompareTag("IceRock");
+                var poisonCloud = gameObject.CompareTag("PoisonCloud");
+
                 Debug.Log("Particle Collision");
                 if (_simulator != null && this.gameObject != null &&
-                    (this.gameObject.CompareTag("FireStone") || this.gameObject.CompareTag("IceRock") || this.gameObject.CompareTag("PoisonCloud")))
+                    (fireStone || iceRock || poisonCloud))
                 {
                     Debug.Log("Collecting");
-                    _simulator.Collect(other, Prefab);
+                    var resType = ResourceType.FireStone;
+                    if (iceRock)
+                    {
+                        resType = ResourceType.IceRock;
+                    }
+                    if (poisonCloud)
+                    {
+                        resType = ResourceType.PoisonCloud;
+                    }
+                    _simulator.Collect(resType, other, Prefab);
                 }
             }
         }

@@ -12,6 +12,7 @@ namespace Assets.Scripts
     // TODO: Make it into a component?
     public class MovingCollected
     {
+        public ResourceType ResourceType;
         public GameObject Moving;
         public GameObject Source;
         public GameObject Destination;

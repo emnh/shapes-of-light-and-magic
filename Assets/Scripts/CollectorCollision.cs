@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// TODO: Deprecated. This script is no longer used. Instead CollectorParticleCollision is used.
+
 namespace Assets.Scripts
 {
     public class CollectorCollision : BuildingBehaviour
@@ -28,11 +30,15 @@ namespace Assets.Scripts
             Debug.Log("Trigger Name: " + collision.name);
             Debug.Log("Trigger GO Name: " + collision.gameObject.name);
 
+            var fireStone = collision.gameObject.CompareTag("FireStone");
+            var iceRock = collision.gameObject.CompareTag("IceRock");
+            var poisonCloud = collision.gameObject.CompareTag("PoisonCloud");
+
             if (Simulator != null && this.gameObject != null && collision.gameObject != null && 
-                (collision.gameObject.CompareTag("FireStone") || collision.gameObject.CompareTag("IceRock") || collision.gameObject.CompareTag("PoisonCloud")))
+                (fireStone || iceRock || poisonCloud))
             {
                 Debug.Log("Collecting");
-                Simulator.Collect(this.gameObject, collision.gameObject);
+                //Simulator.Collect(this.gameObject, collision.gameObject);
             }
         }
     }

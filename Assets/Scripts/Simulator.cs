@@ -17,7 +17,11 @@ namespace Assets.Scripts
 
         public GameObject MainBase;
 
-        public TextMeshProUGUI FirestoneCount;
+        public TextMeshProUGUI FireStoneCount;
+
+        public TextMeshProUGUI IceRockCount;
+
+        public TextMeshProUGUI PoisonCloudCount;
 
         public TextMeshProUGUI WaveCountdown;
 
@@ -28,13 +32,16 @@ namespace Assets.Scripts
 
         public bool NightTime = false;
 
-        private int _firestoneCount = 250;
+        private int _fireStoneCount = 250;
+        private int _iceRockCount = 0;
+        private int _poisonCloudCount = 0;
+
         private float _lastWaveEvent = 0.0f;
 
 
         public List<MovingCollected> MovingToBase = new List<MovingCollected>();
 
-        public void Collect(GameObject collector, GameObject collected)
+        public void Collect(ResourceType resType, GameObject collector, GameObject collected)
         {
             if (MainBase == null)
             {
@@ -42,6 +49,7 @@ namespace Assets.Scripts
             }
             var newMoving = new MovingCollected()
             {
+                ResourceType = resType,
                 Moving = Instantiate(collected, MainBase.transform),
                 Source =  collector,
                 Destination = MainBase
@@ -78,9 +86,9 @@ namespace Assets.Scripts
 
         public bool TryToBuy(int cost)
         {
-            if (_firestoneCount >= cost)
+            if (_fireStoneCount >= cost)
             {
-                _firestoneCount -= cost;
+                _fireStoneCount -= cost;
                 return true;
             }
             return false;
@@ -122,12 +130,25 @@ namespace Assets.Scripts
                 }
                 else
                 {
-                    _firestoneCount++;
+                    switch (obj.ResourceType)
+                    {
+                        case ResourceType.FireStone:
+                            _fireStoneCount++;
+                            break;
+                        case ResourceType.IceRock:
+                            _iceRockCount++;
+                            break;
+                        case ResourceType.PoisonCloud:
+                            _poisonCloudCount++;
+                            break;
+                    }
                 }
             }
             MovingToBase = newList;
 
-            FirestoneCount.text = _firestoneCount.ToString();
+            FireStoneCount.text = _fireStoneCount.ToString();
+            IceRockCount.text = _iceRockCount.ToString();
+            PoisonCloudCount.text = _poisonCloudCount.ToString();
         }
     }
 }
